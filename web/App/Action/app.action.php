@@ -30,41 +30,8 @@ abstract class AppAction extends Action
 	 */
 	public function before()
 	{
-		//自定义业务逻辑
-		$this->getUser();
+	
 
-		//有用户账号就必须判断账号是否有效
-		if ( !empty($this->username) ){
-			$userinfo = $this->load('member')->get($this->username);
-			if(empty($userinfo) || $userinfo['isUse'] == 2) {
-				Session::clear(COOKIE_USER);
-				$this->redirect('', '/role/error');
-			}
-			$this->roleId 	= $userinfo['roleId'];
-			$roleInfo 		= $this->load('role')->getRoleById($this->roleId);
-			$_role 			= empty($roleInfo['role']) ? array() : explode(',', $roleInfo['role']);
-			if ( $roleInfo['isUse'] == 2 ){
-				Session::clear(COOKIE_USER);
-				$this->redirect('', '/role/error');
-			}
-			$this->hasRole = $_role;
-			$this->set('roleId' , $this->roleId);
-			$this->set('_role_' , $this->hasRole);
-		}
-		
-		$roleList = C('ROLE_LIST');
-		if ( isset($roleList[$this->mod.'/'.$this->action]) ) {//权限判断范围
-			//判断权限时，必须要登录状态
-			if ( empty($this->username) || empty($this->userId) ){
-				$this->redirect('', '/index/');
-			}
-			$roleNo = $roleList[$this->mod.'/'.$this->action];
-			if ( !in_array($roleNo, $this->hasRole) ){
-				$this->redirect('', '/role/error');
-			}
-		}
-		$this->set('username' , $this->username);
-		$this->set('userId'   , $this->userId);
 	}
 
 	/**

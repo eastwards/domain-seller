@@ -1,0 +1,12 @@
+【2016-06-17 18:02:26】
+url: http://xxooxo.net/
+exception 'SpringException' with message '模板文件: ./App/View/index/index.index.html 不存在!' in /data/www/default/Spring/MVC/Core/View.php:74
+Stack trace:
+#0 /data/www/default/Spring/MVC/Core/Action.php(102): View->display('index/index.ind...')
+#1 /data/www/default/web/App/Action/index.action.php(17): Action->display()
+#2 /data/www/default/Spring/MVC/Core/Action.php(208): IndexAction->index()
+#3 /data/www/default/Spring/Core/Application.php(33): Action->call('index')
+#4 /data/www/default/Spring/Spring.php(119): Application->process()
+#5 /data/www/default/web/index.php(13): Spring::run()
+#6 {main}
+

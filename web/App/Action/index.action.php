@@ -13,8 +13,9 @@ class IndexAction extends AppAction
 
     public function index()
     {
+	exit('coming soon');
 	$this->set('domain', $_SERVER['HTTP_HOST']);
-        $this->display();
+	$this->display();
     }
 
 }
