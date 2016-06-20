@@ -10,10 +10,12 @@
  */
 class IndexAction extends AppAction
 {
+    public $caches  	= array('index');
+    public $cacheId 	= 'redisHtml';
+    public $expire  	= 36000;//1小时
 
     public function index()
     {
-	exit('coming soon');
 	$this->set('domain', $_SERVER['HTTP_HOST']);
 	$this->display();
     }
