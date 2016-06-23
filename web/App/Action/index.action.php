@@ -25,8 +25,9 @@ class IndexAction extends AppAction
 	    $deny = explode(',',C('OTHERS'));
 	    $this->redirect('', $deny[array_rand($deny)]);
 	}else{
-	    $num = intval($this->com('redisHtml')->get($domain.date('_Ymd')));
-	    $this->com('redisHtml')->set($domain.date('_Ymd'), ++$num);
+	    $key = date('Ymd_').$domain;
+	    $num = intval($this->com('redisHtml')->get($key));
+	    $this->com('redisHtml')->set($key, ++$num);
 	}
 	$this->set('domain', $_SERVER['HTTP_HOST']);
 	$this->display();
